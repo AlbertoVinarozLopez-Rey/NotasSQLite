@@ -18,4 +18,5 @@
         android:layout_height="wrap_content"
         android:text="@string/lblContenido"
         android:textSize="16sp" />
+
 </LinearLayout>

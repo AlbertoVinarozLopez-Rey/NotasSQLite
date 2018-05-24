@@ -1,9 +1,13 @@
 package es.ipo2.notassqlite;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
@@ -13,42 +17,42 @@ import java.util.ArrayList;
  * Created by alber on 24/05/2018.
  */
 
-public class MiClaseAdaptador extends BaseAdapter {
+public class MiClaseAdaptador extends ArrayAdapter {
 
-    private Context context;
-    private ArrayList<Nota> lstNotas;
+    private Activity context;
+    private ArrayList<Nota> notas;
 
-    public MiClaseAdaptador(Context context, ArrayList<Nota> lstNotas) {
+    public MiClaseAdaptador(Activity context, ArrayList<Nota> notas) {
+        super(context, R.layout.adaptador, notas);
         this.context = context;
-        this.lstNotas = lstNotas;
+        this.notas = notas;
     }
 
+    @NonNull
     @Override
-    public int getCount() {
-        return lstNotas.size();
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        LayoutInflater inflater = context.getLayoutInflater();
+        View v = inflater.inflate(R.layout.adaptador, null);
+
+        TextView lblTitulo = v.findViewById(R.id.lblTitulo);
+        TextView lblContenido = v.findViewById(R.id.lblContenido);
+
+        lblTitulo.setText(notas.get(position).getTitulo());
+        lblContenido.setText(notas.get(position).getContenido());
+        return v;
     }
 
-    @Override
-    public Object getItem(int i) {
-        return lstNotas.get(i);
-    }
 
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
-
-    @Override
+    /*@Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        Nota nota = (Nota) getItem(i);
-
         view = LayoutInflater.from(context).inflate(R.layout.adaptador,null);
         TextView lblTitulo = view.findViewById(R.id.lblTitulo);
         TextView lblContenido = view.findViewById(R.id.lblContenido);
 
-        lblTitulo.setText(nota.getTitulo());
-        lblContenido.setText(nota.getContenido());
+        lblTitulo.setText(notas.get(i).getTitulo());
+        lblContenido.setText(notas.get(i).getContenido());
 
         return view;
-    }
+    }*/
+
 }
