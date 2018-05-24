@@ -1,5 +1,6 @@
 package es.ipo2.notassqlite;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,14 +12,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.SimpleCursorAdapter;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseManager manager;
     private Cursor cursor;
     private ListView lstNotas;
-    private MiClaseAdaptador adapter;
+    private ArrayAdapter adapter;
+    private ArrayList<String> listaNotas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +33,24 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.border_color);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(view.getContext(), NuevaNota.class));
+
             }
         });
 
         manager = new DatabaseManager(this);
         lstNotas = (ListView) findViewById(R.id.lstNotas);
-        manager.insertar("tutorial", "esto es una prueba");
-        manager.insertar("nota 1", "mi primera nota");
 
-        String [] from = new String[] {manager.CN_TITLE,manager.CN_CONTENT};
+        // String [] from = new String[] {manager.CN_TITLE,manager.CN_CONTENT};
         //int [] to = new int[]{android.R.id.text1,android.R.id.text2};
-        cursor = manager.cargarNotas();
+        //cursor = manager.cargarNotas();
         //adapter = new SimpleCursorAdapter(this,android.R.layout.two_line_list_item,cursor,from,to);
-        adapter = new MiClaseAdaptador(this, )
+        listaNotas = manager.obtenerNotas();
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,listaNotas);
         lstNotas.setAdapter(adapter);
     }
 
@@ -53,7 +58,22 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        MenuItem item  = menu.findItem(R.id.menuSearch);
+        SearchView searchView =(SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

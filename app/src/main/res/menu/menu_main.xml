@@ -7,4 +7,13 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menuSearch"
+        android:enabled="true"
+        android:icon="@drawable/ic_menu_search"
+        android:title="Search"
+        android:visible="true"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
 </menu>

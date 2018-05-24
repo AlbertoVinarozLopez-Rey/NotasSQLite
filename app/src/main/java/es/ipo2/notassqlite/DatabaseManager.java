@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 /**
  * Created by alber on 24/05/2018.
  */
@@ -57,4 +59,16 @@ public class DatabaseManager {
         String [] columnas = new String[]{CN_ID,CN_TITLE,CN_CONTENT};
         return db.query(TABLE_NAME,columnas,CN_TITLE+"=?",new String[]{titulo},null,null,null);
     }
+
+    public ArrayList<String> obtenerNotas (){
+        ArrayList<String> listaNotas = new ArrayList<String>();
+        String sql = "SELECT * FROM "+TABLE_NAME;
+        Cursor registros = db.rawQuery(sql,null);
+        if (registros.moveToFirst()){
+            do{
+                listaNotas.add(registros.getString(1));
+            }while (registros.moveToNext());
+        }
+        return listaNotas;
+        }
 }
