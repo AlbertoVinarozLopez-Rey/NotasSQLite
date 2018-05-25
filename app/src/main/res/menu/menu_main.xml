@@ -3,17 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="es.ipo2.notassqlite.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/menuAbout"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/menu_about"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/menuSearch"
         android:enabled="true"
         android:icon="@drawable/ic_menu_search"
-        android:title="Search"
+        android:title="Buscar"
         android:visible="true"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menuAddNote"
+        android:enabled="true"
+        android:icon="@drawable/ic_new_note"
+        android:title="Añadir tarea"
+        android:visible="true"
+        app:showAsAction="never" />
 </menu>

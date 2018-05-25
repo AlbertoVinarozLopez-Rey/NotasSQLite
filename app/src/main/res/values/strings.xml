@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">NotasSQLite</string>
-    <string name="action_settings">Acerca de...</string>
+    <string name="menu_about">Acerca de...</string>
     <string name="lblTitulo">Título:</string>
     <string name="lblContenido">Contenido:</string>
     <string name="txtBusqueda" />
@@ -16,6 +16,8 @@
     <string name="menuContextBorrarNota">Borrar contacto</string>
     <string name="menuContextEditarNota">Editar nota</string>
     <string name="lblCrearNota">Crear nueva nota</string>
-    <string name="btnGuardarCambios">Guardar cambios</string>
+    <string name="btnGuardarCambios">Guardar</string>
+    <string name="menu_GuardarCambios">Guardar nota</string>
+
 
 </resources>

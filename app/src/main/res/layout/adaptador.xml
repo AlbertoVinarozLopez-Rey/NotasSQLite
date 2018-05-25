@@ -33,6 +33,7 @@
             android:id="@+id/lblContenido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:text="@string/lblContenido"
             android:textSize="16sp" />
 

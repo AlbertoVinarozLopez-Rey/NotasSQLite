@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="es.ipo2.notassqlite.NuevaNota">
+    <item
+        android:id="@+id/menuGuardarNota"
+        android:orderInCategory="100"
+        android:title="@string/menu_GuardarCambios"
+        android:icon="@mipmap/ic_save_menu"
+        app:showAsAction="always" />
+
+</menu>

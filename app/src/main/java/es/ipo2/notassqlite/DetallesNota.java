@@ -27,7 +27,6 @@ public class DetallesNota extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalles_nota);
-
         db = new DatabaseManager(this);
 
         txtTitulo = findViewById(R.id.txtTitulo);

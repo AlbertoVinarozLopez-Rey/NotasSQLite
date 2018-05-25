@@ -1,13 +1,12 @@
 package es.ipo2.notassqlite;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -36,17 +35,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = new DatabaseManager(this);
-        // si ves esto acuerdate de meterte en Device File Explorer, eliminar la base de datos y su copia
-        // y de hacer un insert antes de ejecutar, o crear la nota tu mismo, que ya esta implementado
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setImageResource(R.drawable.border_color);
+        fab.setImageResource(R.drawable.ic_new_note);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(view.getContext(),NuevaNota.class);
-                startActivityForResult(i, NEW_NOTE_REQUEST);
+                nuevaNota();
             }
         });
 
@@ -55,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
         lstNotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getApplicationContext(), DetallesNota.class);
-                i.putExtra("titulo", notas.get(position).getTitulo());
-                i.putExtra("contenido", notas.get(position).getContenido());
-                i.putExtra("fecha",notas.get(position).getFecha());
-                i.putExtra("tipo",notas.get(position).getTipo());
-                i.putExtra("prioridad",notas.get(position).getPrioridad());
+                Intent i = new Intent(view.getContext(), DetallesNota.class);
+                i.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
+                i.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
+                i.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
+                i.putExtra("tipo",notas.get(notaSeleccionada).getTipo());
+                i.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
                 i.putExtra("editar", false);
                 startActivity(i);
             }
@@ -74,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
                 cargarListaNotas();
             }
         }
+    }
+
+    public void nuevaNota(){
+        Intent i = new Intent(this,NuevaNota.class);
+        startActivityForResult(i, NEW_NOTE_REQUEST);
     }
 
     public void cargarListaNotas(){
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem item  = menu.findItem(R.id.menuSearch);
         SearchView searchView =(SearchView) item.getActionView();
+        searchView.setQueryHint("Buscar notas...");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                adapter.getFilter().filter(s);
+                adapter.filtrar(s);
                 return false;
             }
         });
@@ -125,17 +127,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.menuAbout:
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Toast notificacion = Toast.makeText(this, "Esta aplicación ha sido realizada por: Jesús Martínez Manrique y " +
-                    "Alberto Vinaroz López-Rey",Toast.LENGTH_LONG);
-            notificacion.show();
-            return true;
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Acerca de...");
+                builder.setMessage("Aplicación creada por Jesús Martínez Manrique y Alberto Vinaroz López-Rey, alumnos de la Escuela " +
+                        "Superior de Informática, para la asignatura Interacción Persona-Ordenador II");
+                builder.setPositiveButton("OK",null);
+                builder.create();
+                builder.show();
+                break;
+            case R.id.menuAddNote:
+                nuevaNota();
         }
 
         return super.onOptionsItemSelected(item);
@@ -152,17 +156,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void verNota(){
+        Intent i = new Intent(this, DetallesNota.class);
+        i.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
+        i.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
+        i.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
+        i.putExtra("tipo",notas.get(notaSeleccionada).getTipo());
+        i.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
+        i.putExtra("editar", false);
+        startActivity(i);
+    }
+
     public boolean onContextItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.verDetalles:
-                Intent i = new Intent(this, DetallesNota.class);
-                i.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
-                i.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
-                i.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
-                i.putExtra("tipo",notas.get(notaSeleccionada).getTipo());
-                i.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
-                i.putExtra("editar", false);
-                startActivity(i);
+                verNota();
                 break;
 
             case R.id.borrarNota:
