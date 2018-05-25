@@ -38,10 +38,10 @@ public class DetallesNota extends Activity {
         btnGuardarCambios= findViewById(R.id.btnGuardarCambios);
 
         String[] opcionesTipo = {"Familiar","Deporte","Amigos","Personal","Trabajo","Estudios"};
-        spTipo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesTipo));
+        spTipo.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, opcionesTipo));
 
         String[] opcionesPrioridad = {"Urgente","Alta","Media","Baja"};
-        spPrioridad.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesPrioridad));
+        spPrioridad.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, opcionesPrioridad));
 
         Bundle bundle=getIntent().getExtras();
         idNota=bundle.getInt("idNota");

@@ -109,10 +109,12 @@
             android:id="@+id/btnVolver"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/fab_margin"
             android:layout_weight="1"
+            android:background="@android:color/holo_red_light"
             android:onClick="oyente_btnVolver"
             android:text="@string/btnVolver"
-            android:drawableRight="@drawable/ic_back_button"
+            android:textColor="@android:color/background_light"
             android:visibility="invisible" />
 
         <Button
@@ -120,9 +122,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_save_button"
+            android:background="@android:color/holo_red_light"
             android:onClick="oyente_btnGuardarCambios"
             android:text="@string/btnGuardarCambios"
+            android:textColor="@android:color/background_light"
             android:textStyle="bold"
             android:visibility="invisible" />
 

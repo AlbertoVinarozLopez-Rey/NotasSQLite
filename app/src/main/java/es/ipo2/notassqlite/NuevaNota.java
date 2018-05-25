@@ -51,10 +51,10 @@ public class NuevaNota extends AppCompatActivity {
         spPrioridad = findViewById(R.id.spPrioridad);
 
         String[] opcionesTipo = {"Familiar","Deporte","Amigos","Personal","Trabajo","Estudios"};
-        spTipo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesTipo));
+        spTipo.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, opcionesTipo));
 
         String[] opcionesPrioridad = {"Urgente","Alta","Media","Baja"};
-        spPrioridad.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesPrioridad));
+        spPrioridad.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, opcionesPrioridad));
 
         txtTitulo.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,7 +100,7 @@ public class NuevaNota extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menuGuardarNota:
 
-                oyente_btnGuardar();
+                oyente_btnGuardar(null);
                 break;
 
         }
@@ -110,7 +110,7 @@ public class NuevaNota extends AppCompatActivity {
 
 
 
-    public void oyente_btnGuardar(){
+    public void oyente_btnGuardar(View view){
         int prioridad=0;
         if(spPrioridad.getSelectedItem().toString().equals("Urgente")){
             prioridad=1;

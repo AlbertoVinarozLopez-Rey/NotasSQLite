@@ -1,6 +1,7 @@
 package es.ipo2.notassqlite;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -174,9 +176,22 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.borrarNota:
-                db.eliminarNota(notas.get(notaSeleccionada).getTitulo());
-                notas.remove(notaSeleccionada);
-                adapter.notifyDataSetChanged();
+                AlertDialog.Builder adb = new AlertDialog.Builder(this);
+                adb.setTitle("¿Eliminar nota " +
+                        "'"+notas.get(notaSeleccionada).getTitulo()+"'?");
+                adb.setIcon(android.R.drawable.ic_dialog_alert);
+                adb.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        db.eliminarNota(notas.get(notaSeleccionada).getTitulo());
+                        notas.remove(notaSeleccionada);
+                        adapter.notifyDataSetChanged();
+                    } });
+
+                adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    } });
+                adb.show();
                 break;
 
             case R.id.editarNota:
