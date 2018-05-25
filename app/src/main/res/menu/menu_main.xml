@@ -21,7 +21,7 @@
         android:id="@+id/menuAddNote"
         android:enabled="true"
         android:icon="@drawable/ic_new_note"
-        android:title="Añadir tarea"
+        android:title="Añadir nota"
         android:visible="true"
         app:showAsAction="never" />
 </menu>

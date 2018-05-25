@@ -19,7 +19,6 @@ public class VerNota extends Activity {
     private TextView txtTipo;
     private TextView txtPrioridad;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

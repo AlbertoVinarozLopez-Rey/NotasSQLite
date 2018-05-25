@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private MiClaseAdaptador adapter;
     private int notaSeleccionada;
     private static final int NEW_NOTE_REQUEST = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

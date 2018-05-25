@@ -24,7 +24,6 @@ public class MiClaseAdaptador extends ArrayAdapter {
     private ArrayList<Nota> notas;
     private ArrayList<Nota> copyNotas = new ArrayList<Nota>();
 
-
     public MiClaseAdaptador(Activity context, ArrayList<Nota> notas) {
         super(context, R.layout.adaptador, notas);
         this.context = context;
@@ -70,7 +69,6 @@ public class MiClaseAdaptador extends ArrayAdapter {
         }
         return v;
     }
-
 
     /* Filtra los datos del adaptador */
     public void filtrar(String texto) {

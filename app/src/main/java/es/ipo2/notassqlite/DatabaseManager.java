@@ -3,10 +3,7 @@ package es.ipo2.notassqlite;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
-import java.util.ArrayList;
 
 /**
  * Created by alber on 24/05/2018.
@@ -31,7 +28,6 @@ public class DatabaseManager {
             + CN_TIPO + " TEXT, "
             + CN_PRIORIDAD + " INTEGER)";
 
-
     private DBHelper dbhelper;
     private SQLiteDatabase db;
 
@@ -39,15 +35,6 @@ public class DatabaseManager {
 
         dbhelper = new DBHelper(context);
         db = dbhelper.getWritableDatabase();
-    }
-
-    public DatabaseManager abrir() throws SQLException{
-        db= dbhelper.getWritableDatabase();
-        return this;
-    }
-
-    public void cerrar(){
-        if (db != null) db.close();
     }
 
     public ContentValues generarContentValues (String titulo, String contenido, String fecha, String tipo, int prioridad ){
@@ -74,28 +61,6 @@ public class DatabaseManager {
         String[] args = new String[]{titulo};
         db.delete(TABLE_NAME, CN_TITLE + "=?", args);
     }
-    /*public Cursor cargarNotas (){
-        String [] columnas = new String[]{CN_ID,CN_TITLE,CN_CONTENT};
-        return db.query(TABLE_NAME,columnas,null,null,null,null,null);
-
-    }*/
-
-    /*public Cursor buscarNota (String titulo){
-        String [] columnas = new String[]{CN_ID,CN_TITLE,CN_CONTENT};
-        return db.query(TABLE_NAME,columnas,CN_TITLE+"=?",new String[]{titulo},null,null,null);
-    }*/
-
-    /*public ArrayList<String> obtenerNotas (){
-        ArrayList<String> listaNotas = new ArrayList<String>();
-        String sql = "SELECT * FROM "+TABLE_NAME;
-        Cursor registros = db.rawQuery(sql,null);
-        if (registros.moveToFirst()){
-            do{
-                listaNotas.add(registros.getString(1);
-            }while (registros.moveToNext());
-        }
-        return listaNotas;
-        }*/
 
     public Cursor listarnotas(){
         return db.rawQuery("SELECT * FROM "+TABLE_NAME+ " ORDER BY "+CN_PRIORIDAD,null);

@@ -85,7 +85,6 @@ public class NuevaNota extends AppCompatActivity {
         finish();
     }
 
-
     public void oyente_btnGuardar(View view){
         int prioridad=0;
         if(spPrioridad.getSelectedItem().toString().equals("Urgente")){

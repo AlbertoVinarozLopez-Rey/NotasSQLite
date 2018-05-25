@@ -48,7 +48,6 @@ public class EditarNota extends Activity {
         comprobarTipo(bundle);
     }
 
-
     public void comprobarTipo(Bundle bundle){
 
         if(bundle.getString("tipo").equals("Familiar")){
@@ -64,7 +63,6 @@ public class EditarNota extends Activity {
         }else if(bundle.getString("tipo").equals("Estudios")){
             spTipo.setSelection(5);
         }
-
 
     }
 
@@ -94,5 +92,4 @@ public class EditarNota extends Activity {
         setResult(RESULT_OK, resultado);
         finish();
     }
-
 }

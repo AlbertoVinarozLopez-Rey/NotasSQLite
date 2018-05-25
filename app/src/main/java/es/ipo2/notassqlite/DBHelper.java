@@ -14,7 +14,6 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final int DB_SCHEMA_VERSION = 1;
 
     public DBHelper(Context context) {
-
         super(context, DB_NAME, null, DB_SCHEMA_VERSION);
     }
 
