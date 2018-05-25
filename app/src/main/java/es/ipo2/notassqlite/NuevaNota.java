@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class NuevaNota extends AppCompatActivity {
@@ -16,11 +18,16 @@ public class NuevaNota extends AppCompatActivity {
     private TextView lblTitulo;
     private TextView lblDescripcion;
     private Button btnGuardar;
-
-
+    private Spinner spTipo;
+    private Spinner spPrioridad;
+    private TextView lblTipo;
+    private TextView lblFecha;
+    private EditText txtFecha;
+    private DatabaseManager db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        db = new DatabaseManager(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_nota);
 
@@ -29,6 +36,17 @@ public class NuevaNota extends AppCompatActivity {
         lblTitulo = findViewById(R.id.lblTituloN);
         lblDescripcion = findViewById(R.id.lblDescripcion);
         btnGuardar = findViewById(R.id.btnGuardar);
+        lblFecha= findViewById(R.id.lblFecha);
+        lblTipo = findViewById(R.id.lblTipo);
+        spTipo = (Spinner) findViewById(R.id.spTipo);
+        txtFecha = findViewById(R.id.txtFecha);
+        spPrioridad = findViewById(R.id.spPrioridad);
+
+        String[] opcionesTipo = {"Familiar","Deporte","Amigos","Personal","Trabajo","Estudios"};
+        spTipo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesTipo));
+
+        String[] opcionesPrioridad = {"Baja","Media","Alta","Urgente"};
+        spPrioridad.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesPrioridad));
 
         txtTitulo.addTextChangedListener(new TextWatcher() {
             @Override
@@ -55,5 +73,20 @@ public class NuevaNota extends AppCompatActivity {
     public void oyente_btnVolver (View view){
         finish();
 
+    }
+
+    public void oyente_btnGuardar(View view){
+        int prioridad=0;
+        if(spPrioridad.getSelectedItem().toString().equals("Urgente")){
+            prioridad=1;
+        }else if (spPrioridad.getSelectedItem().toString().equals("Alta")){
+            prioridad=2;
+        }else if(spPrioridad.getSelectedItem().toString().equals("Media")){
+            prioridad = 3;
+        }else if(spPrioridad.getSelectedItem().toString().equals("Baja")){
+            prioridad = 4;
+        }
+        db.insertarNota(txtTitulo.getText().toString(),txtDescripcion.getText().toString(),
+                txtFecha.getText().toString(),spTipo.getSelectedItem().toString(),prioridad);
     }
 }

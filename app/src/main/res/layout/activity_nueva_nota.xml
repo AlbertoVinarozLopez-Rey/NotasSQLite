@@ -48,22 +48,79 @@
         android:hint="por ej: comprar frutas, agua, verduras.."
         android:inputType="textMultiLine" />
 
-    <Button
-        android:id="@+id/btnGuardar"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/lblFecha"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
         android:layout_weight="1"
-        android:enabled="false"
-        android:text="@string/btnGuardar"
-        android:textAlignment="center"
+        android:text="@string/lblFecha"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/btnVolver"
-        android:layout_width="180dp"
+    <EditText
+        android:id="@+id/txtFecha"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="oyente_btnVolver"
-        android:text="@string/btnVolver" />
+        android:ems="10"
+        android:hint="por ej: hoy, sobre las 6 de la tarde"
+        android:inputType="textPersonName"
+        android:text="@string/txtFecha" />
+
+    <TextView
+        android:id="@+id/lblTipo"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_weight="1"
+        android:text="@string/lblTipo"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/lblPrioridad"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_weight="1"
+        android:text="@string/lblPrioridad"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spPrioridad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:onClick="oyente_btnGuardar"
+            android:text="@string/btnGuardar"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="oyente_btnVolver"
+            android:text="@string/btnVolver" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -36,9 +36,12 @@ public class MiClaseAdaptador extends ArrayAdapter {
 
         TextView lblTitulo = v.findViewById(R.id.lblTitulo);
         TextView lblContenido = v.findViewById(R.id.lblContenido);
+        TextView lblFecha = v.findViewById(R.id.lblFecha);
 
         lblTitulo.setText(notas.get(position).getTitulo());
         lblContenido.setText(notas.get(position).getContenido());
+        lblFecha.setText(notas.get(position).getFecha());
+
         return v;
     }
 

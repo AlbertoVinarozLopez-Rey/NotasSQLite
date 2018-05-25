@@ -8,4 +8,12 @@
     <string name="lblDescripcion">Descripción:</string>
     <string name="btnGuardar">Guardar nota</string>
     <string name="btnVolver">Volver</string>
+    <string name="lblFecha">Fecha:</string>
+    <string name="txtFecha" />
+    <string name="lblTipo">Tipo:</string>
+    <string name="lblPrioridad">Prioridad:</string>
+    <string name="menuContextVerDetalles">Ver detalles</string>
+    <string name="menuContextBorrarNota">Borrar contacto</string>
+    <string name="menuContextEditarNota">Editar nota</string>
+
 </resources>
