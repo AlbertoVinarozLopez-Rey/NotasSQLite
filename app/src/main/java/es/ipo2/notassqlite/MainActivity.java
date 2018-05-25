@@ -30,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = new DatabaseManager(this);
-
+        // si ves esto acuerdate de meterte en Device File Explorer, eliminar la base de datos y su copia
+        // y de hacer un insert antes de ejecutar, o crear la nota tu mismo, que ya esta implementado
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
