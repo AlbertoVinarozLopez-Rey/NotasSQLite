@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         // si ves esto acuerdate de meterte en Device File Explorer, eliminar la base de datos y su copia
         // y de hacer un insert antes de ejecutar, o crear la nota tu mismo, que ya esta implementado
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        lstNotas = (ListView) findViewById(R.id.lstNotas);
+
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageResource(R.drawable.border_color);
@@ -49,9 +52,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         cargarListaNotas();
 
+        lstNotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), DetallesNota.class);
+                i.putExtra("titulo", notas.get(position).getTitulo());
+                i.putExtra("contenido", notas.get(position).getContenido());
+                i.putExtra("fecha",notas.get(position).getFecha());
+                i.putExtra("tipo",notas.get(position).getTipo());
+                i.putExtra("prioridad",notas.get(position).getPrioridad());
+                i.putExtra("editar", false);
+                startActivity(i);
+            }
+        });
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -59,13 +74,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == NEW_NOTE_REQUEST){
             if (resultCode == RESULT_OK){
                 cargarListaNotas();
-
             }
         }
     }
 
     public void cargarListaNotas(){
-        lstNotas = (ListView) findViewById(R.id.lstNotas);
         notas = cargarNotas();
         adapter = new MiClaseAdaptador(this, notas);
         adapter.notifyDataSetChanged();
@@ -108,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -121,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Toast notificacion = Toast.makeText(this, "Esta aplicación ha sido realizada por: Jesús Martínez Manrique y " +
+                    "Alberto Vinaroz López-Rey",Toast.LENGTH_LONG);
+            notificacion.show();
             return true;
         }
 
@@ -149,16 +164,14 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
                 i.putExtra("editar", false);
                 startActivity(i);
-
                 break;
 
             case R.id.borrarNota:
-
                 db.eliminarNota(notas.get(notaSeleccionada).getTitulo());
                 notas.remove(notaSeleccionada);
                 adapter.notifyDataSetChanged();
-
                 break;
+
             case R.id.editarNota:
                 Intent i2 = new Intent(this, DetallesNota.class);
                 i2.putExtra("idNota",notas.get(notaSeleccionada).getIdNota());
@@ -169,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
                 i2.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
                 i2.putExtra("editar", true);
                 startActivityForResult(i2, NEW_NOTE_REQUEST);
-
                 break;
         }
         return true;

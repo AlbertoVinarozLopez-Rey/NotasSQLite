@@ -98,6 +98,5 @@ public class NuevaNota extends AppCompatActivity {
         Intent resultado = new Intent();
         setResult(RESULT_OK, resultado);
         finish();
-
     }
 }

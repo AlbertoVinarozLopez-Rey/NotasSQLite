@@ -57,7 +57,6 @@ public class DatabaseManager {
         valores.put(CN_FECHA,fecha);
         valores.put(CN_TIPO,tipo);
         valores.put(CN_PRIORIDAD,prioridad);
-
         return valores;
     }
 

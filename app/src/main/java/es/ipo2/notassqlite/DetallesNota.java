@@ -52,9 +52,6 @@ public class DetallesNota extends Activity {
         comprobarTipo(bundle);
         comprobarEditar(bundle);
         txtFecha.setText(bundle.getString("fecha"));
-
-        spTipo.setEnabled(false);
-        spPrioridad.setEnabled(false);
     }
 
     public void comprobarEditar(Bundle bundle){
@@ -66,7 +63,10 @@ public class DetallesNota extends Activity {
             txtFecha.setEnabled(true);
             btnVolver.setVisibility(View.VISIBLE);
             btnGuardarCambios.setVisibility(View.VISIBLE);
-
+        }else{
+            btnVolver.setVisibility(View.VISIBLE);
+            spTipo.setEnabled(false);
+            spPrioridad.setEnabled(false);
         }
     }
 
