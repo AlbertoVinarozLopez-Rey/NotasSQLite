@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
             }while(cursor.moveToNext());
         }
         cursor.close();
-        db.cerrar();
         return listaNotas;
     }
 
