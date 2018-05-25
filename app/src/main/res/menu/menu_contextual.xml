@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    enu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/verDetalles"
+        android:title="@string/menuContextVerDetalles"
+        />
+    <item
+        android:id="@+id/editarNota"
+        android:title="@string/menuContextEditarNota"
+        />
+    <item
+        android:id="@+id/borrarNota"
+        android:title="Borrar nota"
+        />
+</menu>
