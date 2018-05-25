@@ -58,7 +58,7 @@ public class NuevaNota extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(txtTitulo.equals("")){
+                if(txtTitulo.getText().toString().length()==0){
                     btnGuardar.setEnabled(false);
                 }else{
                     btnGuardar.setEnabled(true);

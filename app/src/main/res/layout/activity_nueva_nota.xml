@@ -11,9 +11,19 @@
     tools:context="es.ipo2.notassqlite.NuevaNota">
 
     <TextView
+        android:id="@+id/lblCrearNota"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:text="@string/lblCrearNota"
+        android:textAlignment="viewStart"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/lblTituloN"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
+        android:layout_height="25dp"
         android:layout_weight="1"
         android:text="@string/lblTitulo"
         android:textSize="20sp"
@@ -33,7 +43,7 @@
     <TextView
         android:id="@+id/lblDescripcion"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
+        android:layout_height="25dp"
         android:layout_weight="1"
         android:text="@string/lblDescripcion"
         android:textSize="20sp"
@@ -51,7 +61,7 @@
     <TextView
         android:id="@+id/lblFecha"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
+        android:layout_height="25dp"
         android:layout_weight="1"
         android:text="@string/lblFecha"
         android:textSize="20sp"
@@ -70,7 +80,7 @@
     <TextView
         android:id="@+id/lblTipo"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
+        android:layout_height="30dp"
         android:layout_weight="1"
         android:text="@string/lblTipo"
         android:textSize="20sp"
@@ -85,7 +95,7 @@
     <TextView
         android:id="@+id/lblPrioridad"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
+        android:layout_height="30dp"
         android:layout_weight="1"
         android:text="@string/lblPrioridad"
         android:textSize="20sp"

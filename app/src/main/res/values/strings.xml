@@ -15,5 +15,6 @@
     <string name="menuContextVerDetalles">Ver detalles</string>
     <string name="menuContextBorrarNota">Borrar contacto</string>
     <string name="menuContextEditarNota">Editar nota</string>
+    <string name="lblCrearNota">Crear nueva nota</string>
 
 </resources>

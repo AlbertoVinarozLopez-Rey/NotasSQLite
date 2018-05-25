@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView lstNotas;
     private ArrayList<Nota> notas;
     private MiClaseAdaptador adapter;
+    private int notaSeleccionada;
     private static final int NEW_NOTE_REQUEST = 1;
 
 
@@ -130,13 +132,30 @@ public class MainActivity extends AppCompatActivity {
     {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_contextual, menu);
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        notaSeleccionada = info.position;
+
+
     }
 
     public boolean onContextItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.verDetalles:
+                Intent i = new Intent(this, DetallesNota.class);
+                i.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
+                i.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
+                i.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
+                i.putExtra("tipo",notas.get(notaSeleccionada).getTipo());
+                i.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
+                startActivity(i);
+
                 break;
+
             case R.id.borrarNota:
+                db.eliminarNota(notas.get(notaSeleccionada).getTitulo());
+                notas.remove(notaSeleccionada);
+                adapter.notifyDataSetChanged();
+
                 break;
             case R.id.editarNota:
                 break;
