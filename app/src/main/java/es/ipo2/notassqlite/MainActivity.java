@@ -7,6 +7,7 @@ import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -152,7 +153,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.borrarNota:
-                db.eliminarNota(notas.get(notaSeleccionada).getTitulo());
+                Log.d("Debug_bienvenido",notas.get(notaSeleccionada).getTitulo());
+
+                db.eliminarNota(notas.get(notaSeleccionada).getTitulo().toString());
                 notas.remove(notaSeleccionada);
                 adapter.notifyDataSetChanged();
 
