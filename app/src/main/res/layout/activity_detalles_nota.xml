@@ -106,7 +106,7 @@
         android:layout_weight="1"
         android:onClick="oyente_btnGuardarCambios"
         android:text="@string/btnGuardarCambios"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btnVolver"
@@ -115,7 +115,7 @@
         android:layout_weight="1"
         android:onClick="oyente_btnVolver"
         android:text="@string/btnVolver"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
 
 </LinearLayout>
