@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
         // si ves esto acuerdate de meterte en Device File Explorer, eliminar la base de datos y su copia
         // y de hacer un insert antes de ejecutar, o crear la nota tu mismo, que ya esta implementado
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        lstNotas = (ListView) findViewById(R.id.lstNotas);
-
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageResource(R.drawable.border_color);
@@ -79,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cargarListaNotas(){
+        lstNotas = (ListView) findViewById(R.id.lstNotas);
         notas = cargarNotas();
         adapter = new MiClaseAdaptador(this, notas);
         adapter.notifyDataSetChanged();

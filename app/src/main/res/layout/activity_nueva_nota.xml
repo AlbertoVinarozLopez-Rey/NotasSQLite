@@ -118,6 +118,7 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableRight="@drawable/save"
             android:enabled="false"
             android:onClick="oyente_btnGuardar"
             android:text="@string/btnGuardar"
@@ -129,6 +130,7 @@
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/back"
             android:onClick="oyente_btnVolver"
             android:text="@string/btnVolver" />
     </LinearLayout>

@@ -38,7 +38,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/lblFecha2"
+            android:id="@+id/lblFecha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lblFecha"

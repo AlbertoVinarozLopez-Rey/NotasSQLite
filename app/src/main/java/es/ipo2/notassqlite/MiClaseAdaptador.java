@@ -47,25 +47,24 @@ public class MiClaseAdaptador extends ArrayAdapter {
         switch (notas.get(position).getTipo().toLowerCase())
         {
             case "familiar":
-                imagNota.setImageResource(R.drawable.trabajo);
+                imagNota.setImageResource(R.drawable.ic_tipo_familiar);
                 break;
             case "deporte":
-                imagNota.setImageResource(R.drawable.trabajo);
+                imagNota.setImageResource(R.drawable.ic_tipo_deportes);
                 break;
             case "estudios":
-                imagNota.setImageResource(R.drawable.trabajo);
+                imagNota.setImageResource(R.drawable.ic_tipo_estudios);
                 break;
             case "trabajo":
-                imagNota.setImageResource(R.drawable.trabajo);
+                imagNota.setImageResource(R.drawable.ic_tipo_trabajo);
                 break;
             case "personal":
-                imagNota.setImageResource(R.drawable.trabajo);
+                imagNota.setImageResource(R.drawable.ic_tipo_personal);
                 break;
             case "amigos":
-                imagNota.setImageResource(R.drawable.trabajo);
+                imagNota.setImageResource(R.drawable.ic_tipo_amigos);
                 break;
         }
-
         return v;
     }
 
