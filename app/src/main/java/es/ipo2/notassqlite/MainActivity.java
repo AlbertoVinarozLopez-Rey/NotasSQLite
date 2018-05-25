@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = new DatabaseManager(this);
+        db.insertarNota("hola", "que tal", "6", "familiar", 1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -154,8 +155,6 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_contextual, menu);
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
         notaSeleccionada = info.position;
-
-
     }
 
     public void verNota(){
@@ -189,7 +188,6 @@ public class MainActivity extends AppCompatActivity {
 
                 adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
                     } });
                 adb.show();
                 break;

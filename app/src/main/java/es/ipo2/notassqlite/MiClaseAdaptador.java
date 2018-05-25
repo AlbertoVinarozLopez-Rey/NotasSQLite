@@ -78,13 +78,11 @@ public class MiClaseAdaptador extends ArrayAdapter {
         // Elimina todos los datos del ArrayList que se cargan en los
         // elementos del adaptador
         notas.clear();
-
         // Si no hay texto: agrega de nuevo los datos del ArrayList copiado
         // al ArrayList que se carga en los elementos del adaptador
         if (texto.length() == 0) {
             notas.addAll(copyNotas);
         } else {
-
             // Recorre todos los elementos que contiene el ArrayList copiado
             // y dependiendo de si estos contienen el texto ingresado por el
             // usuario los agrega de nuevo al ArrayList que se carga en los
@@ -96,7 +94,6 @@ public class MiClaseAdaptador extends ArrayAdapter {
                 }
             }
         }
-
         // Actualiza el adaptador para aplicar los cambios
         notifyDataSetChanged();
     }

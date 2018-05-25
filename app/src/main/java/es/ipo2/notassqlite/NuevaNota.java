@@ -99,10 +99,8 @@ public class NuevaNota extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuGuardarNota:
-
                 oyente_btnGuardar(null);
                 break;
-
         }
 
         return super.onOptionsItemSelected(item);

@@ -38,7 +38,8 @@
         android:hint="por ej: hacer la compra.."
         android:inputType="textPersonName"
         android:singleLine="true"
-        android:text="@string/txtTitulo" />
+        android:text="@string/txtTitulo"
+        android:textColorLink="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/lblDescripcion"
@@ -56,7 +57,8 @@
         android:layout_weight="1"
         android:ems="10"
         android:hint="por ej: comprar frutas, agua, verduras.."
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:textColorLink="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/lblFecha"
@@ -75,7 +77,8 @@
         android:ems="10"
         android:hint="por ej: hoy, sobre las 6 de la tarde"
         android:inputType="textPersonName"
-        android:text="@string/txtFecha" />
+        android:text="@string/txtFecha"
+        android:textColorLink="@color/colorPrimary" />
 
     <TextView
         android:id="@+id/lblTipo"
@@ -120,7 +123,7 @@
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_weight="1"
-            android:background="@android:color/holo_red_light"
+            android:background="?attr/colorPrimary"
             android:onClick="oyente_btnVolver"
             android:text="@string/btnVolver"
             android:textColor="@android:color/background_light" />
@@ -130,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/holo_red_light"
+            android:background="?attr/colorPrimary"
             android:enabled="false"
             android:onClick="oyente_btnGuardar"
             android:text="@string/btnGuardar"
