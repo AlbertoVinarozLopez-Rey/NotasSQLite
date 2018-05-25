@@ -18,6 +18,12 @@
     <string name="lblCrearNota">Crear nueva nota</string>
     <string name="btnGuardarCambios">Guardar</string>
     <string name="menu_GuardarCambios">Guardar nota</string>
+    <string name="txtContenido" />
+    <string name="txtTipo" >Titulo de la nota</string>
+    <string name="txtPrioridad" >Prioridad de la nota</string>
+    <string name="lblVerTitulo" >Titulo de la nota</string>
+    <string name="lblVerContenido" >Contenido de la nota</string>
+    <string name="lblVerFecha" >Fecha de la nota</string>
 
 
 </resources>

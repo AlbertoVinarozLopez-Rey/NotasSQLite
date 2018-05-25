@@ -14,10 +14,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -37,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         db = new DatabaseManager(this);
-        db.insertarNota("hola", "que tal", "6", "familiar", 1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -54,14 +51,7 @@ public class MainActivity extends AppCompatActivity {
         lstNotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(view.getContext(), DetallesNota.class);
-                i.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
-                i.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
-                i.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
-                i.putExtra("tipo",notas.get(notaSeleccionada).getTipo());
-                i.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
-                i.putExtra("editar", false);
-                startActivity(i);
+                verNota();
             }
         });
     }
@@ -158,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void verNota(){
-        Intent i = new Intent(this, DetallesNota.class);
+        Intent i = new Intent(this, VerNota.class);
         i.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
         i.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
         i.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
@@ -168,6 +158,35 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void editarNota(){
+        Intent i2 = new Intent(this, EditarNota.class);
+        i2.putExtra("idNota",notas.get(notaSeleccionada).getIdNota());
+        i2.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
+        i2.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
+        i2.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
+        i2.putExtra("tipo",notas.get(notaSeleccionada).getTipo());
+        i2.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
+        startActivityForResult(i2, NEW_NOTE_REQUEST);
+    }
+
+    public void borrarNota(){
+        AlertDialog.Builder adb = new AlertDialog.Builder(this);
+        adb.setTitle("¿Eliminar nota " +
+                "'"+notas.get(notaSeleccionada).getTitulo()+"'?");
+        adb.setIcon(android.R.drawable.ic_dialog_alert);
+        adb.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                db.eliminarNota(notas.get(notaSeleccionada).getTitulo());
+                notas.remove(notaSeleccionada);
+                adapter.notifyDataSetChanged();
+            } });
+
+        adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            } });
+        adb.show();
+    }
+
     public boolean onContextItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.verDetalles:
@@ -175,33 +194,11 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.borrarNota:
-                AlertDialog.Builder adb = new AlertDialog.Builder(this);
-                adb.setTitle("¿Eliminar nota " +
-                        "'"+notas.get(notaSeleccionada).getTitulo()+"'?");
-                adb.setIcon(android.R.drawable.ic_dialog_alert);
-                adb.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        db.eliminarNota(notas.get(notaSeleccionada).getTitulo());
-                        notas.remove(notaSeleccionada);
-                        adapter.notifyDataSetChanged();
-                    } });
-
-                adb.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                    } });
-                adb.show();
+             borrarNota();
                 break;
 
             case R.id.editarNota:
-                Intent i2 = new Intent(this, DetallesNota.class);
-                i2.putExtra("idNota",notas.get(notaSeleccionada).getIdNota());
-                i2.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
-                i2.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
-                i2.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
-                i2.putExtra("tipo",notas.get(notaSeleccionada).getTipo());
-                i2.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
-                i2.putExtra("editar", true);
-                startActivityForResult(i2, NEW_NOTE_REQUEST);
+                editarNota();
                 break;
         }
         return true;

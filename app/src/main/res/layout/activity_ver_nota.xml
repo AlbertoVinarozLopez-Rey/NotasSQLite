@@ -8,66 +8,59 @@
     android:layout_marginRight="@dimen/fab_margin"
     android:layout_marginTop="@dimen/fab_margin"
     android:orientation="vertical"
-    tools:context="es.ipo2.notassqlite.DetallesNota">
+    tools:context="es.ipo2.notassqlite.VerNota">
 
     <TextView
         android:id="@+id/lblTituloN"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:layout_weight="1"
         android:text="@string/lblTitulo"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:editable="false"
-        android:ems="10"
-        android:enabled="false"
-        android:inputType="textPersonName"
-        android:text="@string/txtTitulo" />
+        android:text="@string/lblVerTitulo"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/lblDescripcion"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:layout_weight="1"
         android:text="@string/lblDescripcion"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/txtDescripcion"
+    <TextView
+        android:id="@+id/txtContenido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:editable="false"
-        android:ems="10"
-        android:enabled="false"
-        android:inputType="textPersonName" />
+        android:maxLines="8"
+        android:text="@string/lblVerContenido"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/lblFecha"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="30dp"
         android:layout_weight="1"
         android:text="@string/lblFecha"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
-    <EditText
+    <TextView
         android:id="@+id/txtFecha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:editable="false"
-        android:ems="10"
-        android:enabled="false"
-        android:inputType="textPersonName"
-        android:text="@string/txtFecha" />
+        android:text="@string/lblVerFecha"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/lblTipo"
@@ -75,14 +68,16 @@
         android:layout_height="30dp"
         android:layout_weight="1"
         android:text="@string/lblTipo"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
-    <Spinner
-        android:id="@+id/spTipo"
+    <TextView
+        android:id="@+id/txtTipo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="@string/txtTipo"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/lblPrioridad"
@@ -90,18 +85,21 @@
         android:layout_height="30dp"
         android:layout_weight="1"
         android:text="@string/lblPrioridad"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
-    <Spinner
-        android:id="@+id/spPrioridad"
+    <TextView
+        android:id="@+id/txtPrioridad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:text="@string/txtPrioridad"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/fab_margin"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -109,24 +107,11 @@
             android:id="@+id/btnVolver"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/fab_margin"
             android:layout_weight="1"
             android:background="?attr/colorPrimary"
             android:onClick="oyente_btnVolver"
             android:text="@string/btnVolver"
             android:textColor="@android:color/background_light"
-            android:visibility="visible" />
-
-        <Button
-            android:id="@+id/btnGuardarCambios"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?attr/colorPrimary"
-            android:onClick="oyente_btnGuardarCambios"
-            android:text="@string/btnGuardarCambios"
-            android:textColor="@android:color/background_light"
-            android:textStyle="bold"
             android:visibility="visible" />
 
 

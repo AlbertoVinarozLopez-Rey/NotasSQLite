@@ -81,31 +81,9 @@ public class NuevaNota extends AppCompatActivity {
         });
     }
 
-    public void oyente_btnVolver (View view){
+    public void oyente_btnVolver (View view) {
         finish();
-
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_nueva_nota, menu);
-        myMenu=menu;
-        return true;
-    }
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menuGuardarNota:
-                oyente_btnGuardar(null);
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
 
     public void oyente_btnGuardar(View view){

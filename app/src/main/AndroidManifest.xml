@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".NuevaNota" />
-        <activity android:name=".DetallesNota"></activity>
+        <activity android:name=".EditarNota" />
+        <activity android:name=".VerNota"></activity>
     </application>
 
 </manifest>

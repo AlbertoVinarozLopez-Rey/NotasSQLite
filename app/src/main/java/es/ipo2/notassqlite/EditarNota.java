@@ -2,7 +2,6 @@ package es.ipo2.notassqlite;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,22 +10,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class DetallesNota extends Activity {
+public class EditarNota extends Activity {
 
     private EditText txtTitulo;
     private EditText txtContenido;
     private Spinner spTipo;
     private EditText txtFecha;
     private Spinner spPrioridad;
-    private Button btnVolver;
-    private  Button btnGuardarCambios;
     private DatabaseManager db;
     private int idNota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalles_nota);
+        setContentView(R.layout.activity_editar_nota);
         db = new DatabaseManager(this);
 
         txtTitulo = findViewById(R.id.txtTitulo);
@@ -34,8 +31,6 @@ public class DetallesNota extends Activity {
         txtFecha= findViewById(R.id.txtFecha);
         spTipo=findViewById(R.id.spTipo);
         spPrioridad=findViewById(R.id.spPrioridad);
-        btnVolver= findViewById(R.id.btnVolver);
-        btnGuardarCambios= findViewById(R.id.btnGuardarCambios);
 
         String[] opcionesTipo = {"Familiar","Deporte","Amigos","Personal","Trabajo","Estudios"};
         spTipo.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, opcionesTipo));
@@ -48,26 +43,11 @@ public class DetallesNota extends Activity {
         txtTitulo.setText(bundle.getString("titulo"));
         txtContenido.setText(bundle.getString("contenido"));
         spPrioridad.setSelection(bundle.getInt("prioridad")-1);
-        comprobarTipo(bundle);
-        comprobarEditar(bundle);
         txtFecha.setText(bundle.getString("fecha"));
+
+        comprobarTipo(bundle);
     }
 
-    public void comprobarEditar(Bundle bundle){
-        if(bundle.get("editar").equals(true)){
-            txtTitulo.setEnabled(true);
-            spTipo.setEnabled(true);
-            spPrioridad.setEnabled(true);
-            txtContenido.setEnabled(true);
-            txtFecha.setEnabled(true);
-            btnVolver.setVisibility(View.VISIBLE);
-            btnGuardarCambios.setVisibility(View.VISIBLE);
-        }else{
-            btnVolver.setVisibility(View.VISIBLE);
-            spTipo.setEnabled(false);
-            spPrioridad.setEnabled(false);
-        }
-    }
 
     public void comprobarTipo(Bundle bundle){
 
