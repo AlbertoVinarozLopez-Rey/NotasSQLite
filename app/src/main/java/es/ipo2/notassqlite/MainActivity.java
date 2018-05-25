@@ -153,9 +153,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.borrarNota:
-                Log.d("Debug_bienvenido",notas.get(notaSeleccionada).getTitulo());
 
-                db.eliminarNota(notas.get(notaSeleccionada).getTitulo().toString());
+                db.eliminarNota(notas.get(notaSeleccionada).getTitulo());
                 notas.remove(notaSeleccionada);
                 adapter.notifyDataSetChanged();
 

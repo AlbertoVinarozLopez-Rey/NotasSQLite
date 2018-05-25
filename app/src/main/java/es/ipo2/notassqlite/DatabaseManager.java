@@ -66,10 +66,10 @@ public class DatabaseManager {
 
     }
 
-    public void eliminarNota (String titulo){
+    public void eliminarNota (String titulo) {
         String[] args = new String[]{titulo};
-        db.execSQL("DELETE FROM "+TABLE_NAME+" WHERE "+CN_TITLE+"=?",args);    }
-
+        db.delete(TABLE_NAME, CN_TITLE + "=?", args);
+    }
     /*public Cursor cargarNotas (){
         String [] columnas = new String[]{CN_ID,CN_TITLE,CN_CONTENT};
         return db.query(TABLE_NAME,columnas,null,null,null,null,null);
