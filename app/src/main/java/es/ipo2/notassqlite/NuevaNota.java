@@ -1,5 +1,6 @@
 package es.ipo2.notassqlite;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class NuevaNota extends AppCompatActivity {
 
@@ -88,5 +90,14 @@ public class NuevaNota extends AppCompatActivity {
         }
         db.insertarNota(txtTitulo.getText().toString(),txtDescripcion.getText().toString(),
                 txtFecha.getText().toString(),spTipo.getSelectedItem().toString(),prioridad);
+
+        Toast notificacion;
+        notificacion = Toast.makeText(this, "La tarea "+txtTitulo.getText().toString()+ " se ha creado " +
+                        "correctamente",Toast.LENGTH_LONG);
+        notificacion.show();
+        Intent resultado = new Intent();
+        setResult(RESULT_OK, resultado);
+        finish();
+
     }
 }

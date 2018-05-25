@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView lstNotas;
     private ArrayList<Nota> notas;
     private MiClaseAdaptador adapter;
+    private static final int NEW_NOTE_REQUEST = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +41,31 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                startActivity(new Intent(view.getContext(), NuevaNota.class));
+                Intent i = new Intent(view.getContext(),NuevaNota.class);
+                startActivityForResult(i, NEW_NOTE_REQUEST);
             }
         });
 
-        lstNotas = (ListView) findViewById(R.id.lstNotas);
 
+        cargarListaNotas();
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == NEW_NOTE_REQUEST){
+            if (resultCode == RESULT_OK){
+                cargarListaNotas();
+
+            }
+        }
+    }
+
+    public void cargarListaNotas(){
+        lstNotas = (ListView) findViewById(R.id.lstNotas);
         notas = cargarNotas();
         adapter = new MiClaseAdaptador(this, notas);
+        adapter.notifyDataSetChanged();
         lstNotas.setAdapter(adapter);
         registerForContextMenu(lstNotas);
 
