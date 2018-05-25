@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -37,10 +38,33 @@ public class MiClaseAdaptador extends ArrayAdapter {
         TextView lblTitulo = v.findViewById(R.id.lblTitulo);
         TextView lblContenido = v.findViewById(R.id.lblContenido);
         TextView lblFecha = v.findViewById(R.id.lblFecha);
+        ImageView imagNota = (ImageView)v.findViewById(R.id.imagNota);
 
         lblTitulo.setText(notas.get(position).getTitulo());
         lblContenido.setText(notas.get(position).getContenido());
         lblFecha.setText(notas.get(position).getFecha());
+
+        switch (notas.get(position).getTipo().toLowerCase())
+        {
+            case "familiar":
+                imagNota.setImageResource(R.drawable.trabajo);
+                break;
+            case "deporte":
+                imagNota.setImageResource(R.drawable.trabajo);
+                break;
+            case "estudios":
+                imagNota.setImageResource(R.drawable.trabajo);
+                break;
+            case "trabajo":
+                imagNota.setImageResource(R.drawable.trabajo);
+                break;
+            case "personal":
+                imagNota.setImageResource(R.drawable.trabajo);
+                break;
+            case "amigos":
+                imagNota.setImageResource(R.drawable.trabajo);
+                break;
+        }
 
         return v;
     }
