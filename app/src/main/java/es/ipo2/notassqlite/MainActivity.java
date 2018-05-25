@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(cursor.moveToFirst()){
             do{
-                Nota nota = new Nota(cursor.getString(1), cursor.getString(2),
+                Nota nota = new Nota(cursor.getInt(0), cursor.getString(1), cursor.getString(2),
                         cursor.getString(3),cursor.getString(4),cursor.getInt(5));
                 listaNotas.add(nota);
             }while(cursor.moveToNext());
@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
                 i.putExtra("tipo",notas.get(notaSeleccionada).getTipo());
                 i.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
+                i.putExtra("editar", false);
                 startActivity(i);
 
                 break;
@@ -159,6 +160,16 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
             case R.id.editarNota:
+                Intent i2 = new Intent(this, DetallesNota.class);
+                i2.putExtra("idNota",notas.get(notaSeleccionada).getIdNota());
+                i2.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
+                i2.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
+                i2.putExtra("fecha",notas.get(notaSeleccionada).getFecha());
+                i2.putExtra("tipo",notas.get(notaSeleccionada).getTipo());
+                i2.putExtra("prioridad",notas.get(notaSeleccionada).getPrioridad());
+                i2.putExtra("editar", true);
+                startActivityForResult(i2, NEW_NOTE_REQUEST);
+
                 break;
         }
         return true;

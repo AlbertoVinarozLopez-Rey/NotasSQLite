@@ -66,6 +66,11 @@ public class DatabaseManager {
 
     }
 
+    public void actualizarNota (int id, String titulo, String contenido, String fecha, String tipo, int prioridad ) {
+        db.update(TABLE_NAME,generarContentValues(titulo, contenido, fecha, tipo, prioridad),CN_ID+"="+id,null);
+
+    }
+
     public void eliminarNota (String titulo) {
         String[] args = new String[]{titulo};
         db.delete(TABLE_NAME, CN_TITLE + "=?", args);

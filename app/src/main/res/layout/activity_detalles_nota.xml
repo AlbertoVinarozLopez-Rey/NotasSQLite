@@ -99,5 +99,23 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="oyente_btnVolver"
+        android:text="@string/btnVolver"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btnGuardarCambios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="oyente_btnGuardarCambios"
+        android:text="@string/btnGuardarCambios"
+        android:visibility="invisible" />
+
 
 </LinearLayout>

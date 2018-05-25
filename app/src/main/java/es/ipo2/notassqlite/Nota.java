@@ -5,6 +5,7 @@ package es.ipo2.notassqlite;
  */
 
 public class Nota {
+    private int idNota;
     private String titulo;
     private  String contenido;
     private int prioridad;
@@ -23,6 +24,23 @@ public class Nota {
         this.prioridad = prioridad;
         this.fecha = fecha;
         this.tipo = tipo;
+    }
+
+    public Nota(int idNota,String titulo, String contenido,  String fecha, String tipo, int prioridad) {
+        this.idNota=idNota;
+        this.titulo = titulo;
+        this.contenido = contenido;
+        this.prioridad = prioridad;
+        this.fecha = fecha;
+        this.tipo = tipo;
+    }
+
+    public int getIdNota() {
+        return idNota;
+    }
+
+    public void setIdNota(int idNota) {
+        this.idNota = idNota;
     }
 
     public String getTitulo() {

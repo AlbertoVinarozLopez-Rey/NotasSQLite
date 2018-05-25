@@ -1,11 +1,15 @@
 package es.ipo2.notassqlite;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class DetallesNota extends Activity {
 
@@ -14,17 +18,25 @@ public class DetallesNota extends Activity {
     private Spinner spTipo;
     private EditText txtFecha;
     private Spinner spPrioridad;
+    private Button btnVolver;
+    private  Button btnGuardarCambios;
+    private DatabaseManager db;
+    private int idNota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalles_nota);
 
+        db = new DatabaseManager(this);
+
         txtTitulo = findViewById(R.id.txtTitulo);
         txtContenido = findViewById(R.id.txtDescripcion);
         txtFecha= findViewById(R.id.txtFecha);
         spTipo=findViewById(R.id.spTipo);
         spPrioridad=findViewById(R.id.spPrioridad);
+        btnVolver= findViewById(R.id.btnVolver);
+        btnGuardarCambios= findViewById(R.id.btnGuardarCambios);
 
         String[] opcionesTipo = {"Familiar","Deporte","Amigos","Personal","Trabajo","Estudios"};
         spTipo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesTipo));
@@ -33,14 +45,29 @@ public class DetallesNota extends Activity {
         spPrioridad.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesPrioridad));
 
         Bundle bundle=getIntent().getExtras();
+        idNota=bundle.getInt("idNota");
         txtTitulo.setText(bundle.getString("titulo"));
         txtContenido.setText(bundle.getString("contenido"));
         spPrioridad.setSelection(bundle.getInt("prioridad")-1);
         comprobarTipo(bundle);
+        comprobarEditar(bundle);
         txtFecha.setText(bundle.getString("fecha"));
 
         spTipo.setEnabled(false);
         spPrioridad.setEnabled(false);
+    }
+
+    public void comprobarEditar(Bundle bundle){
+        if(bundle.get("editar").equals(true)){
+            txtTitulo.setEnabled(true);
+            spTipo.setEnabled(true);
+            spPrioridad.setEnabled(true);
+            txtContenido.setEnabled(true);
+            txtFecha.setEnabled(true);
+            btnVolver.setVisibility(View.VISIBLE);
+            btnGuardarCambios.setVisibility(View.VISIBLE);
+
+        }
     }
 
     public void comprobarTipo(Bundle bundle){
@@ -61,4 +88,32 @@ public class DetallesNota extends Activity {
 
 
     }
+
+    public void oyente_btnVolver(View view){
+        finish();
+    }
+
+    public void oyente_btnGuardarCambios(View view){
+        int prioridad=0;
+        if(spPrioridad.getSelectedItem().toString().equals("Urgente")){
+            prioridad=1;
+        }else if (spPrioridad.getSelectedItem().toString().equals("Alta")){
+            prioridad=2;
+        }else if(spPrioridad.getSelectedItem().toString().equals("Media")){
+            prioridad = 3;
+        }else if(spPrioridad.getSelectedItem().toString().equals("Baja")){
+            prioridad = 4;
+        }
+        db.actualizarNota(idNota,txtTitulo.getText().toString(),txtContenido.getText().toString(),txtFecha.getText().toString(),
+                spTipo.getSelectedItem().toString(),prioridad);
+
+        Toast notificacion;
+        notificacion = Toast.makeText(this, "La tarea "+txtTitulo.getText().toString()+ " se ha actualizado " +
+                "correctamente",Toast.LENGTH_LONG);
+        notificacion.show();
+        Intent resultado = new Intent();
+        setResult(RESULT_OK, resultado);
+        finish();
+    }
+
 }

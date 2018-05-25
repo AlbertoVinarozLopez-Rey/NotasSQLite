@@ -47,7 +47,7 @@ public class NuevaNota extends AppCompatActivity {
         String[] opcionesTipo = {"Familiar","Deporte","Amigos","Personal","Trabajo","Estudios"};
         spTipo.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesTipo));
 
-        String[] opcionesPrioridad = {"Baja","Media","Alta","Urgente"};
+        String[] opcionesPrioridad = {"Urgente","Alta","Media","Baja"};
         spPrioridad.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, opcionesPrioridad));
 
         txtTitulo.addTextChangedListener(new TextWatcher() {
