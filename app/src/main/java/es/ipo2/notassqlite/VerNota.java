@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class VerNota extends Activity {
+public class VerNota extends AppCompatActivity {
 
     private TextView txtTitulo;
     private TextView txtContenido;
@@ -23,6 +23,7 @@ public class VerNota extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_nota);
+        getSupportActionBar().setTitle("Ver nota");
 
         txtTitulo = findViewById(R.id.txtTitulo);
         txtContenido = findViewById(R.id.txtContenido);

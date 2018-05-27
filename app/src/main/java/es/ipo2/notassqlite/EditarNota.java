@@ -3,14 +3,16 @@ package es.ipo2.notassqlite;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
-public class EditarNota extends Activity {
+public class EditarNota extends AppCompatActivity {
 
     private EditText txtTitulo;
     private EditText txtContenido;
@@ -26,6 +28,8 @@ public class EditarNota extends Activity {
         setContentView(R.layout.activity_editar_nota);
         db = new DatabaseManager(this);
 
+
+        getSupportActionBar().setTitle("Editar nota");
         txtTitulo = findViewById(R.id.txtTitulo);
         txtContenido = findViewById(R.id.txtDescripcion);
         txtFecha= findViewById(R.id.txtFecha);

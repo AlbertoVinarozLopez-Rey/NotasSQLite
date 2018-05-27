@@ -38,6 +38,8 @@ public class NuevaNota extends AppCompatActivity {
         db = new DatabaseManager(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_nota);
+        getSupportActionBar().setTitle("Crear nueva nota");
+
 
         txtTitulo = findViewById(R.id.txtTitulo);
         txtDescripcion = findViewById(R.id.txtDescripcion);

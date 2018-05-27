@@ -11,16 +11,6 @@
     tools:context="es.ipo2.notassqlite.NuevaNota">
 
     <TextView
-        android:id="@+id/lblCrearNota"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_weight="1"
-        android:text="@string/lblCrearNota"
-        android:textAlignment="viewStart"
-        android:textSize="15sp"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/lblTituloN"
         android:layout_width="match_parent"
         android:layout_height="25dp"
