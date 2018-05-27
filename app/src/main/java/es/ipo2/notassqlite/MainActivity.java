@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         lstNotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                verNota();
+                verNota(position);
             }
         });
     }
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         notaSeleccionada = info.position;
     }
 
-    public void verNota(){
+    public void verNota(int notaSeleccionada){
         Intent i = new Intent(this, VerNota.class);
         i.putExtra("titulo", notas.get(notaSeleccionada).getTitulo());
         i.putExtra("contenido", notas.get(notaSeleccionada).getContenido());
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.verDetalles:
-                verNota();
+                verNota(notaSeleccionada);
                 break;
 
             case R.id.borrarNota:
